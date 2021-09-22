@@ -96,3 +96,10 @@ button {
 #valor-convertido {
     margin: 5px 0;
 }
+
+@media screen and (max-width: 400px) {
+    .container {
+        width: 350px;
+        padding: 20px 10px;
+    }
+}
