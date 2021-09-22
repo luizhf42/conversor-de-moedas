@@ -1,33 +1,46 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Imersão Dev - Aula 03</title>
+    <title>Conversor de Moedas - Imersão Dev</title>
 </head>
-
 <body>
-    <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-mentalista.svg" class="page-logo" alt="">
-
-    <a href="https://alura.com.br/" target="_blank"><img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="Logo da Alura" class="alura-logo"></a>
+    <header>
+        <a href="https://alura.com.br/" target="_blank"><img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="Logo da Alura" class="alura-logo"></a>
+        
+        <h1 class="page-title">Conversor de moedas</h1>
+        
+        <p class="page-subtitle">Converta valores de real, dólar e euro facilmente!</p>
+        
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-conversor-de-moedas.svg" class="page-logo" alt="Logo da Imersão Dev">
+    </header>
     
     <div class="container">
-        <img src="https://img.wattpad.com/0fc92a017212e74276cf1129ed96241ea9dad9de/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f41534a77512d51666d74335557773d3d2d313030363230363930302e313636633731663330653863323731643633343432393939333138342e6a7067" alt="Ilustração com o personagem Gen Asagiri" class="container-header">
-
-        <h1 class="title">Mentalista</h1>
-
-        <p class="subtitle">Digite um número de 0 a 100:</p>
-
-        <input type="number" id="chute" min="0" max="100">
-        <p id="tentativas">Tentativas restantes: 5</p>
-        <button type="submit" onclick="chutar()">Chutar</button>
+        <p>Conversão de:</p>
+        <div class="opcoes">
+            <select name="opcao-1" id="opcao-1">
+                <option value="real" selected>Real (R$)</option>
+                <option value="dolar">Dólar (U$)</option>
+                <option value="euro">Euro (&euro;)</option>
+            </select>
+            <p class="seta">➟</p>
+            <select name="opcao-2" id="opcao-2">
+                <option value="real">Real (R$)</option>
+                <option value="dolar" selected>Dólar (U$)</option>
+                <option value="euro">Euro (&euro;)</option>
+            </select>
+        </div>
         
-        <p class="resultado" id="resultado"></p>
-        <p id="resposta"></p>
+        <label for="valor">Insira o valor:</label>
+        <input type="number" id="valor" size="2" min="0.01" step="0.01">
+        <button type="submit" onclick="converter()">Converter</button>
+        
+        <p id="valor-convertido"></p>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
-
 </html>

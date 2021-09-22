@@ -1,36 +1,53 @@
-var tentativas = 5;
-var acertou = false;
+function converter() {
+    // Pega os valores das options e do input
+    var campoDaMoedaUm = document.getElementById('opcao-1');
+    var campoDaMoedaDois = document.getElementById('opcao-2');
+    var moedaUm = campoDaMoedaUm.options[campoDaMoedaUm.selectedIndex].value;    
+    var moedaDois = campoDaMoedaDois.options[campoDaMoedaDois.selectedIndex].value;   
+    var valor = document.getElementById('valor').value;
 
-function chutar() {
-    var chute = document.getElementById('chute').value;
-    document.getElementById('resultado').style.display = "block";
+    var conversaoValor;
 
-    if (tentativas > 0) {
-        if (chute == numeroAleatorio) {
-            document.getElementById('resultado').innerHTML = `Parabéns, você acertou! O número aleatório era ${numeroAleatorio}!`
-            acertou = true;
-            tentativas = 0;
-            document.getElementById('chute').readOnly = true;
-        } else if (chute < numeroAleatorio && acertou == false) {
-            document.getElementById('resultado').innerHTML = `Você errou! O número sorteado é maior que ${chute}.`
-        } else if (chute > numeroAleatorio && acertou == false) {
-            document.getElementById('resultado').innerHTML = `Você errou! O número sorteado é menor que ${chute}.`
+    // Checa se a conversão é válida, caso sim, a executa dependendo das moedas selecionadas.
+    if (valor <= 0) {
+        document.getElementById('valor-convertido').innerHTML = "Por favor, insira um valor válido."
+    } else if (moedaUm == moedaDois) {
+        document.getElementById('valor-convertido').innerHTML = "Por favor, insira duas unidades de moeda diferentes."
+    } else if (moedaUm == 'real') {
+        switch (moedaDois) {
+            case 'dolar':
+            conversaoValor = (valor / 5).toFixed(2);
+            document.getElementById('valor-convertido').innerHTML = `R$${valor}, na cotação atual, equivale a, aproximadamente, U$${conversaoValor}`;
+            break;
+
+            case 'euro':
+            conversaoValor = (valor / 6).toFixed(2);
+            document.getElementById('valor-convertido').innerHTML = `R$${valor}, na cotação atual, equivale a, aproximadamente, &euro;${conversaoValor}`;
+            break;
         }
+    } else if (moedaUm == 'dolar') {
+        switch (moedaDois) {
+            case 'real':
+            conversaoValor = (valor * 5).toFixed(2);
+            document.getElementById('valor-convertido').innerHTML = `U$${valor}, na cotação atual, equivale a, aproximadamente, R$${conversaoValor}`;
+            break;
 
-        if (!acertou) {
-        tentativas--;
-        document.getElementById('tentativas').innerHTML = `Tentativas restantes: ${tentativas}` 
+            case 'euro':
+            conversaoValor = (valor / 1.2).toFixed(2);
+            document.getElementById('valor-convertido').innerHTML = `U$${valor}, na cotação atual, equivale a, aproximadamente, &euro;${conversaoValor}`;
+            break;
         }
-    }
-
-    if (tentativas <= 0 && acertou == false) {
-        document.getElementById('tentativas').innerHTML = "Você não tem nenhuma tentativa restante."
-        document.getElementById('chute').readOnly = true;
-        document.getElementById('resposta').style.display = "block";
-        document.getElementById('resposta').innerHTML = `A resposta era ${numeroAleatorio}.`
-    } else if (tentativas <= 0 && acertou) {
-        document.getElementById('tentativas').innerHTML = "Você já acertou. Não há mais tentativas!"
+    } else if (moedaUm == 'euro') {
+        switch (moedaDois) {
+            case 'real':
+            conversaoValor = (valor * 6).toFixed(2);
+            document.getElementById('valor-convertido').innerHTML = `&euro;${valor}, na cotação atual, equivale a, aproximadamente, R$${conversaoValor}`;
+            break;
+            
+            case 'dolar':
+            conversaoValor = (valor / 0.8).toFixed(2);
+            document.getElementById('valor-convertido').innerHTML = `&euro;${valor}, na cotação atual, equivale a, aproximadamente, U$${conversaoValor}`;
+            break;
+        }
     }
 }
-
-var numeroAleatorio = Math.floor((Math.random() * 101));
